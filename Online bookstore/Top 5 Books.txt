@@ -1,0 +1,58 @@
+Top 5 Books
+
+
+SQL> SELECT *
+  2  FROM (
+  3      SELECT
+  4          b.book_id,
+  5          b.title,
+  6          SUM(od.quantity) AS total_sold
+  7      FROM Books b
+  8      JOIN Order_Details od
+  9      ON b.book_id = od.book_id
+ 10      GROUP BY b.book_id, b.title
+ 11      ORDER BY total_sold DESC
+ 12  )
+ 13  WHERE ROWNUM <= 5;
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+TOTAL_SOLD
+----------
+         1
+The Digital World
+         2
+
+         4
+Murder on the Orient Express
+         2
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+TOTAL_SOLD
+----------
+
+         3
+The Da Vinci Code
+         2
+
+         2
+1984
+
+   BOOK_ID
+----------
+TITLE
+--------------------------------------------------------------------------------
+TOTAL_SOLD
+----------
+         1
+
+         5
+The Shining
+         1
+
+
